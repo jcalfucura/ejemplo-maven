@@ -10,7 +10,7 @@ pipeline {
                 }
             }
         }
-        stage(step 2: Test"){
+        stage("step 2: Test"){
             steps {
                 script {
                 sh "echo 'Test'"
