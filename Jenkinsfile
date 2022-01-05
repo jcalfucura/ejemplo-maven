@@ -25,6 +25,7 @@ pipeline {
                 sh "mvn clean package -e"
                 }
             }
+        }    
         stage("step 4: run"){
             steps {
                 script {
