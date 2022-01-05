@@ -1,14 +1,36 @@
+
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v $HOME/.m2:/root/.m2'
-        }
-    }
+    agent any
     stages {
-        stage('Build') {
+        stage("step 1: Compile"){
             steps {
-                sh 'mvn -B'
+                script {
+                sh "echo 'Compile'"
+                sh "mvn clean compile -e"
+                }
+            }
+        }
+        stage(step 2: Test"){
+            steps {
+                script {
+                sh "echo 'Test'"
+                sh "mvn clean test -e"
+                }
+            }
+        }
+        stage("step 3: package .Jar"){
+            steps {
+                script {
+                sh "echo 'Build'"
+                sh "mvn clean package -e"
+                }
+            }
+        stage("step 4: run"){
+            steps {
+                script {
+                sh "echo 'run'"
+                sh "maven mvn spring-boot:run"
+                }
             }
         }
     }
