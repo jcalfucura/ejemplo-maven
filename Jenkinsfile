@@ -62,7 +62,7 @@ pipeline {
                             [$class: 'MavenPackage',
                                 mavenAssetList: [
                                     [classifier: '',
-                                    extension: '.jar',
+                                    extension: '',
                                     filePath: 'build/DevOpsUsach2020-0.0.1.jar']
                                 ],
                         mavenCoordinate: [
@@ -77,7 +77,7 @@ pipeline {
 
         stage('Paso 6: Bajar Nexus Stage') {
             steps {
-                sh 'curl -X GET -u admin:calfu1975 http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.7/DevOpsUsach2020-0.0.1.jar -O'
+                sh 'curl -X GET -u admin:calfu1975 http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
             }
         }                
 
