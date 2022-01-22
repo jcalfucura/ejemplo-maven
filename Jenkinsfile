@@ -84,20 +84,18 @@ pipeline {
         stage("Paso 7: Levantar Springboot APP"){
             steps {
                 // sh 'mvn spring-boot:run &'
-                sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
+                sh 'nohup java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
             }
         }
         stage("Paso 8: Dormir(Esperar 10sg) "){
             steps {
-                //sh 'sleep 20'
-                sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+                sh 'sleep 20'
             }
         }
 
         stage("Paso 9: Test Alive Service - Testing Application!"){
             steps {
-                //sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
-                sh "echo 'ces finish' "
+                sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
             }
         }
     }
