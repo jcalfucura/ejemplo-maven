@@ -11,9 +11,9 @@ pipeline {
                 checkout(
                     [$class: 'GitSCM',
                     //Acá reemplazar por el nonbre de branch
-                    branches: [[name: "circleci" ]],
+                    branches: [[name: "feature-nexus" ]],
                     //Acá reemplazar por su propio repositorio
-                    userRemoteConfigs: [[url: 'https://github.com/tundervirld/clase2mod3seccion3.git']]])
+                    userRemoteConfigs: [[url: 'https://github.com/jcalfucura/ejemplo-maven.git']]])
             }
         }
         stage("Paso 1: Compliar"){
