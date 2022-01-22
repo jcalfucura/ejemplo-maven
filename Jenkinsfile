@@ -89,13 +89,15 @@ pipeline {
         }
         stage("Paso 8: Dormir(Esperar 10sg) "){
             steps {
-                sh 'sleep 20'
+                //sh 'sleep 20'
+                sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
             }
         }
 
         stage("Paso 9: Test Alive Service - Testing Application!"){
             steps {
-                sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
+                //sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
+                sh "echo 'ces finish' "
             }
         }
     }
