@@ -73,7 +73,31 @@ pipeline {
                         ]
                     ]
                 }
+        }
+
+        stage('Paso 6: Bajar Nexus Stage') {
+            steps {
+                sh 'curl -X GET -u admin:calfu1975 http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.7/DevOpsUsach2020-0.0.1.jar -O'
             }
+        }                
+
+        stage("Paso 7: Levantar Springboot APP"){
+            steps {
+                // sh 'mvn spring-boot:run &'
+                sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
+            }
+        }
+        stage("Paso 8: Dormir(Esperar 10sg) "){
+            steps {
+                sh 'sleep 20'
+            }
+        }
+
+        stage("Paso 9: Test Alive Service - Testing Application!"){
+            steps {
+                sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
+            }
+        }
     }
     post {
         always {
