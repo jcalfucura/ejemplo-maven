@@ -51,13 +51,14 @@ pipeline {
                     sh 'mvn clean verify sonar:sonar'
                 }
             }
-            post {
-                //record the test results and archive the jar file.
-                success {
-                    //archiveArtifacts artifacts:'build/*.jar'
-                    nexusPublisher nexusInstanceId: 'nexus',
-                        nexusRepositoryId: 'devops-usach-nexus',
-                        packages: [
+        }
+        stage("Paso 5: Subida a Nexus") {
+            //record the test results and archive the jar file.
+            steps {
+                //archiveArtifacts artifacts:'build/*.jar'
+                nexusPublisher nexusInstanceId: 'nexus',
+                    nexusRepositoryId: 'devops-usach-nexus',
+                    packages: [
                             [$class: 'MavenPackage',
                                 mavenAssetList: [
                                     [classifier: '',
@@ -73,7 +74,6 @@ pipeline {
                     ]
                 }
             }
-        }
     }
     post {
         always {
